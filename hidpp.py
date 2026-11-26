@@ -1,6 +1,6 @@
 """
-Minimal HID++ 2.0 client for Logitech devices connected directly over Bluetooth
-(and through a Bolt / Unifying receiver, with a device index of 1..6).
+Minimal HID++ 2.0 client for Logitech devices connected directly over Bluetooth.
+(Devices behind a Bolt / Unifying USB receiver use device index 1..6; find_devices() doesn't list them yet.)
 
 Only what the switch listener needs:
   - find a feature's index (root feature 0x0000)

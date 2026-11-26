@@ -2,13 +2,16 @@
 Guided Easy-Switch test. Tells you which key to press, records what the keyboard sends for each step,
 and prints a summary. Changes nothing permanent: key reporting is turned off again at the end.
 
-  .venv/bin/python guided_test.py
+  .venv/bin/python dev/guided_test.py
 """
+import os
+import sys
 import time
 
 import hid
 
-import hidpp
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import hidpp  # noqa: E402
 
 STEP_S = 5.0
 COME_BACK_S = 20.0

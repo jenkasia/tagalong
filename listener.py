@@ -1,18 +1,15 @@
 """
-Keyboard + mouse switch for a Logitech MX keyboard and mouse.
+Make a Logitech mouse (and any other Logitech device) follow your keyboard between computers.
 
-Press the keyboard's 1 / 2 / 3 key (F1 / F2 / F3) and both the keyboard and the mouse move to that
-computer. Run the same script on every computer, each with its own channel:
+Run this on every computer the devices are paired with, each with its own Easy-Switch channel:
 
-  Mac (channel 1):      python listener.py --channel 1
-  Windows (channel 2):  python listener.py --channel 2
+  python listener.py --channel 1     on the computer paired on channel 1
+  python listener.py --channel 2     on the computer paired on channel 2
 
-The keyboard's top row must send F-keys (press Fn+Esc once to toggle). Then F1/F2 reach this script,
-and Fn+F1 / Fn+F2 keep working as the keyboard's own Easy-Switch (keyboard only), as a backup.
-
-When you press another computer's key, the script sends every Logitech device on this computer to
-that channel: the mouse first, then the keyboard. Only the computer that has them can do this, so
-the script has to run on each computer.
+Then press F1 / F2 / F3 for channel 1 / 2 / 3. The computer that has the devices right now sends every
+Logitech device it has to that channel: mice first, then the keyboard. On many Logitech keyboards the
+Easy-Switch keys are the F1-F3 keys, so you press the same key as before. The top row must send F-keys
+(on MX keyboards, Fn+Esc toggles this); the keyboard's own Easy-Switch then stays on Fn+F1..F3.
 
 --dry-run detects the key presses and says what it would do, without moving anything.
 """
@@ -108,7 +105,7 @@ class Trigger:
         switch_all(target, self.dry_run)
 
 
-# ---------- macOS: read the keyboard's own key reports ----------
+# ---------- macOS (and other non-Windows systems): read the keyboard's own key reports ----------
 
 _said_no_access = False
 
@@ -123,26 +120,31 @@ def find_keyboard() -> hidpp.Device | None:
         except OSError:
             if not _said_no_access:
                 import os
-                app = os.path.normpath(os.path.join(os.path.realpath(sys.executable), "../../Resources/Python.app"))
-                log(f"{info.product} is connected, but macOS won't let this program open it. Add this app in "
-                    f"System Settings > Privacy & Security > Input Monitoring, then it starts working by itself:\n"
-                    f"    {app if os.path.isdir(app) else os.path.realpath(sys.executable)}")
+                exe = os.path.realpath(sys.executable)
+                if sys.platform == "darwin":
+                    app = os.path.normpath(os.path.join(exe, "../../Resources/Python.app"))
+                    log(f"{info.product} is connected, but macOS won't let this program open it. Add this app in "
+                        f"System Settings > Privacy & Security > Input Monitoring, then it starts working by itself:\n"
+                        f"    {app if os.path.isdir(app) else exe}")
+                else:
+                    log(f"{info.product} is connected, but this user may not open it ({info.path!r}). "
+                        f"Give it read/write access to that device, for example with a udev rule.")
                 _said_no_access = True
     return None
 
 
 def warn_if_fn_lock_off(dev: hidpp.Device) -> None:
-    """MX Keys Mini: feature 0x40A3. Byte 1 = 1 means the top row does special functions by default."""
+    """Feature 0x40A3 (fn inversion, MX Keys and similar). Byte 1 = 1 means the top row does special functions."""
     try:
         idx = dev.request(0, 0, (0x40A3).to_bytes(2, "big"))[0]
         if idx and dev.request(idx, 0)[1] == 1:
             log("NOTE: the top row is in special-function mode, so F1/F2 do the keyboard's own Easy-Switch and this "
-                "script never sees them. Press Fn+Esc once so F1/F2 send F-keys.")
+                "script never sees them. Toggle fn lock (Fn+Esc on MX keyboards) so F1/F2 send F-keys.")
     except hidpp.HidppError:
         pass
 
 
-def run_mac(trigger: Trigger) -> None:
+def run_hid(trigger: Trigger) -> None:
     waiting_said = False
     while True:
         kb = find_keyboard()
@@ -208,7 +210,7 @@ def main() -> int:
     if sys.platform == "win32":
         run_windows(trigger)
     else:
-        run_mac(trigger)
+        run_hid(trigger)
     return 0
 
 

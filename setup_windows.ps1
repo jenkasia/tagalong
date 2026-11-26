@@ -1,7 +1,9 @@
-# Sets up the keyboard + mouse switch on Windows (channel 2) and starts it at every sign-in.
-# Run setup_windows.bat (double-click), which runs this file. Run it again after changing the files.
-#   setup_windows.bat -Uninstall   stops it and removes it from startup.
-param([int]$Channel = 2, [switch]$Uninstall)
+# Installs the switch on this Windows PC and starts it at every sign-in.
+# Double-click setup_windows.bat, which runs this file. Run it again after updating the files.
+#   setup_windows.bat              asks for this computer's channel
+#   setup_windows.bat -Channel 2   this computer is channel 2 (the Easy-Switch slot it's paired on)
+#   setup_windows.bat -Uninstall   stops it and removes it from startup
+param([int]$Channel = 0, [switch]$Uninstall)
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $here
@@ -15,6 +17,11 @@ Get-CimInstance Win32_Process -Filter "Name = 'pythonw.exe' OR Name = 'python.ex
 if ($Uninstall) {
     if (Test-Path $shortcut) { Remove-Item $shortcut; Write-Host "Removed it from startup." }
     exit 0
+}
+
+while ($Channel -lt 1 -or $Channel -gt 3) {
+    $answer = Read-Host "Which Easy-Switch channel is this computer on (1, 2 or 3)?"
+    [int]::TryParse($answer, [ref]$Channel) | Out-Null
 }
 
 if (-not (Get-Command py -ErrorAction SilentlyContinue)) {
@@ -43,7 +50,7 @@ $lnk.Arguments = $args_
 $lnk.WorkingDirectory = $here
 $lnk.Description = "Logitech keyboard + mouse switch (channel $Channel)"
 $lnk.Save()
-Write-Host "Added to startup: $shortcut"
+Write-Host "Installed as channel $Channel. It starts at every sign-in: $shortcut"
 
 Start-Process -FilePath $pythonw -ArgumentList $args_ -WorkingDirectory $here
 Start-Sleep -Seconds 3

@@ -1,9 +1,12 @@
 """Turn on analytics key reporting for the Easy-Switch keys, log every HID++ report for a while, turn it off."""
+import os
 import sys
 import time
 
 import hid
-import hidpp
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import hidpp  # noqa: E402
 
 SECONDS = float(sys.argv[1]) if len(sys.argv) > 1 else 45
 
