@@ -12,6 +12,7 @@
   <a href="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml"><img src="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml/badge.svg?branch=main" alt="CodeQL security scan"></a>
   <a href=".github/dependabot.yml"><img src="https://img.shields.io/badge/dependabot-enabled-025E8C?logo=dependabot&logoColor=white" alt="Dependabot enabled"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/jenkasia/tagalong" alt="License: MIT"></a>
+  <a href="https://buymeacoffee.com/jenkasia"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
   <br>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-555" alt="Platforms: macOS, Windows, Linux">
@@ -72,6 +73,15 @@ Or **Code → Download ZIP**. Then run the setup for your system:
 - [Logitech Easy-Switch, pairing and supported devices](docs/LOGITECH.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [How it works inside](docs/TECHNICAL.md)
+
+## Support
+
+Tagalong is free and open source. If it saves you a reach under your mouse every day, a coffee keeps it
+maintained and the next tool coming.
+
+<a href="https://buymeacoffee.com/jenkasia"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="44"></a>
+
+A ⭐ on the repo or a report of a device that works for you helps too.
 
 ## License
 
