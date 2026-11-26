@@ -12,13 +12,16 @@
   <a href="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml"><img src="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml/badge.svg?branch=main" alt="CodeQL security scan"></a>
   <a href=".github/dependabot.yml"><img src="https://img.shields.io/badge/dependabot-enabled-025E8C?logo=dependabot&logoColor=white" alt="Dependabot enabled"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/jenkasia/tagalong" alt="License: MIT"></a>
-  <a href="https://buymeacoffee.com/jenkasia"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
   <br>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-555" alt="Platforms: macOS, Windows, Linux">
   <a href="switch/requirements.txt"><img src="https://img.shields.io/badge/dependencies-1%20%28hidapi%29-brightgreen" alt="Dependencies: 1 (hidapi)"></a>
   <a href="https://github.com/jenkasia/tagalong/commits/main"><img src="https://img.shields.io/github/last-commit/jenkasia/tagalong" alt="Last commit"></a>
   <a href="https://github.com/jenkasia/tagalong/stargazers"><img src="https://img.shields.io/github/stars/jenkasia/tagalong?style=flat" alt="GitHub stars"></a>
+</p>
+
+<p align="center">
+  <a href="https://buymeacoffee.com/jenkasia"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="60"></a>
 </p>
 
 ![Demo: press F2 and the mouse, then the keyboard, move from computer A to computer B](docs/demo.svg)
