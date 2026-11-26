@@ -40,6 +40,8 @@ To know for sure, run the check: it prints "can switch" for each device that wor
 .venv\Scripts\python switch\check.py      # Windows
 ```
 
+![Output of check.py: both devices can switch](check.svg)
+
 Tried another device? An issue or pull request adding it here is welcome.
 
 ## Logi Options+

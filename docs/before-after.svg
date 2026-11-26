@@ -43,7 +43,7 @@
   <rect x="460" y="50" width="422" height="165" rx="10" fill="#ffffff" stroke="#2da44e" stroke-width="1.5"/>
   <circle cx="480" cy="72" r="10" fill="#2da44e"/>
   <path d="M475.5,72 L478.5,75 L484.5,69" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="498" y="77" font-size="14" font-weight="600" fill="#1f2328">With logitechmouseswitch</text>
+  <text x="498" y="77" font-size="14" font-weight="600" fill="#1f2328">With Tagalong</text>
   <use href="#monitor" x="480" y="110"/>
   <use href="#monitor" x="772" y="110"/>
   <use href="#kb" x="643" y="97"/>

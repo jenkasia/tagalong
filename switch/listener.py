@@ -1,5 +1,5 @@
 """
-Make a Logitech mouse (and any other Logitech device) follow your keyboard between computers.
+Tagalong: make a Logitech mouse (and any other Logitech device) follow your keyboard between computers.
 
 Run this on every computer the devices are paired with, each with its own Easy-Switch channel:
 

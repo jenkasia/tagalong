@@ -36,7 +36,7 @@ command -v python3 >/dev/null || { echo "Python 3 is not installed. Install pyth
 if [ ! -f "$RULE" ]; then
     echo "Adding a udev rule so you can open Logitech devices (needs sudo):"
     sudo tee "$RULE" >/dev/null <<'EOF'
-# logitechmouseswitch: let the logged-in user open Logitech HID devices
+# Tagalong: let the logged-in user open Logitech HID devices
 ACTION!="add|change", GOTO="logitech_switch_end"
 SUBSYSTEM!="hidraw", GOTO="logitech_switch_end"
 ATTRS{idVendor}=="046d", TAG+="uaccess", GOTO="logitech_switch_end"
@@ -50,7 +50,7 @@ fi
 mkdir -p "$(dirname "$UNIT_FILE")"
 cat > "$UNIT_FILE" <<EOF
 [Unit]
-Description=Logitech keyboard + mouse switch (channel $CHANNEL)
+Description=Tagalong keyboard + mouse switch (channel $CHANNEL)
 
 [Service]
 ExecStart="$HERE/.venv/bin/python" "$HERE/switch/listener.py" --channel $CHANNEL --log "$HERE/listener.log"

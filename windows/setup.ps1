@@ -7,7 +7,7 @@ param([int]$Channel = 0, [switch]$Uninstall)
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)   # the repo folder
 Set-Location $here
-$shortcut = Join-Path ([Environment]::GetFolderPath("Startup")) "Keyboard mouse switch.lnk"
+$shortcut = Join-Path ([Environment]::GetFolderPath("Startup")) "Tagalong.lnk"
 
 # stop a copy that is already running
 Get-CimInstance Win32_Process -Filter "Name = 'pythonw.exe' OR Name = 'python.exe'" |
@@ -48,7 +48,7 @@ $lnk = $sh.CreateShortcut($shortcut)
 $lnk.TargetPath = $pythonw
 $lnk.Arguments = $args_
 $lnk.WorkingDirectory = $here
-$lnk.Description = "Logitech keyboard + mouse switch (channel $Channel)"
+$lnk.Description = "Tagalong keyboard + mouse switch (channel $Channel)"
 $lnk.Save()
 Write-Host "Installed as channel $Channel. It starts at every sign-in: $shortcut"
 

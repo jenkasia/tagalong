@@ -1,10 +1,19 @@
-# logitechmouseswitch
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
+    <img src="docs/logo-light.svg" alt="Tagalong" width="380">
+  </picture>
+</p>
 
-**One key moves your Logitech keyboard and mouse to another computer, together.**
+<p align="center"><b>Your mouse tags along when your Logitech keyboard switches computers.</b></p>
 
-![Easy-Switch moves only the keyboard. This moves both.](docs/before-after.svg)
+![Demo: press F2 and the mouse, then the keyboard, move from computer A to computer B](docs/demo.svg)
 
 A small background script on each computer. No extra hardware, no cloud, no Logi Options+ Flow.
+
+## Why
+
+![Easy-Switch moves only the keyboard. Tagalong moves both.](docs/before-after.svg)
 
 ## How it works
 
