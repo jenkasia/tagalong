@@ -1,11 +1,11 @@
 # Installs the switch on this Windows PC and starts it at every sign-in.
-# Double-click setup_windows.bat, which runs this file. Run it again after updating the files.
-#   setup_windows.bat              asks for this computer's channel
-#   setup_windows.bat -Channel 2   this computer is channel 2 (the Easy-Switch slot it's paired on)
-#   setup_windows.bat -Uninstall   stops it and removes it from startup
+# Double-click setup.bat, which runs this file. Run it again after updating the files.
+#   setup.bat              asks for this computer's channel
+#   setup.bat -Channel 2   this computer is channel 2 (the Easy-Switch slot it's paired on)
+#   setup.bat -Uninstall   stops it and removes it from startup
 param([int]$Channel = 0, [switch]$Uninstall)
 $ErrorActionPreference = "Stop"
-$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+$here = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)   # the repo folder
 Set-Location $here
 $shortcut = Join-Path ([Environment]::GetFolderPath("Startup")) "Keyboard mouse switch.lnk"
 
@@ -37,11 +37,11 @@ if (-not (Test-Path ".venv\Scripts\python.exe")) {
     if ($LASTEXITCODE) { throw "could not create .venv" }
 }
 Write-Host "Installing hidapi ..."
-& .venv\Scripts\python.exe -m pip install --quiet --disable-pip-version-check -r requirements.txt
+& .venv\Scripts\python.exe -m pip install --quiet --disable-pip-version-check -r switch\requirements.txt
 if ($LASTEXITCODE) { throw "pip install failed" }
 
 $pythonw = Join-Path $here ".venv\Scripts\pythonw.exe"
-$args_ = "`"$here\listener.py`" --channel $Channel --log `"$here\listener.log`""
+$args_ = "`"$here\switch\listener.py`" --channel $Channel --log `"$here\listener.log`""
 
 $sh = New-Object -ComObject WScript.Shell
 $lnk = $sh.CreateShortcut($shortcut)

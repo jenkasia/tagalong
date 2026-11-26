@@ -5,7 +5,7 @@ import time
 
 import hid
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "switch"))
 import hidpp  # noqa: E402
 
 SECONDS = float(sys.argv[1]) if len(sys.argv) > 1 else 45

@@ -1,14 +1,14 @@
 #!/bin/bash
 # Installs the switch on this Mac and starts it at every login.
-#   ./setup_macos.sh             asks for this computer's channel
-#   ./setup_macos.sh 1           this computer is channel 1 (the Easy-Switch slot it's paired on)
-#   ./setup_macos.sh --uninstall stop it and remove it from login
+#   mac/setup.sh              asks for this computer's channel
+#   mac/setup.sh 1            this computer is channel 1 (the Easy-Switch slot it's paired on)
+#   mac/setup.sh --uninstall  stop it and remove it from login
 set -euo pipefail
 LABEL=local.keyboard-mouse-switch
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 DOMAIN="gui/$(id -u)"
-cd "$(dirname "$0")"
-HERE="$PWD"
+cd "$(dirname "$0")/.."
+HERE="$PWD"   # the repo folder
 
 stop_running() {
     launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null && echo "Stopped the running switch." || true
@@ -35,7 +35,7 @@ esac
 
 command -v python3 >/dev/null || { echo "Python 3 is not installed: brew install python (or python.org)"; exit 1; }
 [ -x .venv/bin/python ] || python3 -m venv .venv
-.venv/bin/pip install --quiet --disable-pip-version-check -r requirements.txt
+.venv/bin/pip install --quiet --disable-pip-version-check -r switch/requirements.txt
 stop_running
 
 mkdir -p "$HOME/Library/LaunchAgents"
@@ -48,7 +48,7 @@ cat > "$PLIST" <<EOF
     <key>ProgramArguments</key>
     <array>
         <string>$HERE/.venv/bin/python</string>
-        <string>$HERE/listener.py</string>
+        <string>$HERE/switch/listener.py</string>
         <string>--channel</string><string>$CHANNEL</string>
         <string>--log</string><string>$HERE/listener.log</string>
     </array>

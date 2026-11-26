@@ -3,8 +3,10 @@ Make a Logitech mouse (and any other Logitech device) follow your keyboard betwe
 
 Run this on every computer the devices are paired with, each with its own Easy-Switch channel:
 
-  python listener.py --channel 1     on the computer paired on channel 1
-  python listener.py --channel 2     on the computer paired on channel 2
+  python switch/listener.py --channel 1     on the computer paired on channel 1
+  python switch/listener.py --channel 2     on the computer paired on channel 2
+
+The setup scripts in mac/, windows/ and linux/ install it to start at login.
 
 Then press F1 / F2 / F3 for channel 1 / 2 / 3. The computer that has the devices right now sends every
 Logitech device it has to that channel: mice first, then the keyboard. On many Logitech keyboards the

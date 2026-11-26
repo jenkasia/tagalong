@@ -14,7 +14,15 @@ import sys
 import time
 from dataclasses import dataclass
 
-import hid
+if sys.platform.startswith("linux"):
+    # The default 'hid' module on Linux talks to USB through libusb and never sees Bluetooth devices.
+    # The hidraw backend sees both.
+    try:
+        import hidraw as hid
+    except ImportError:
+        import hid
+else:
+    import hid
 
 if sys.platform == "darwin":
     # hidapi opens devices exclusively on macOS by default, which fails for a keyboard and mouse

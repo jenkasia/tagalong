@@ -2,14 +2,13 @@
 Check which of your Logitech devices this tool can switch, and which channel each one is on now.
 Read-only: it changes nothing on the devices.
 
-  python check.py            (on Windows: .venv\\Scripts\\python check.py)
-  python check.py --verbose  also list every Logitech HID entry and the Easy-Switch key details
+  .venv/bin/python switch/check.py            (Windows: .venv\\Scripts\\python switch\\check.py)
+  .venv/bin/python switch/check.py --verbose  also list every Logitech HID entry and the Easy-Switch key details
 """
 import sys
 
-import hid
-
 import hidpp
+from hidpp import hid   # the right HID backend for this system
 
 verbose = "--verbose" in sys.argv
 
@@ -53,4 +52,4 @@ for info in devices:
 
 print()
 if ok:
-    print("The channel shown is this computer's channel: use it with listener.py --channel N.")
+    print("The channel shown is this computer's channel: enter it when the setup asks.")
