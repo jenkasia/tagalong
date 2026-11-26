@@ -79,7 +79,7 @@ Or **Code → Download ZIP**. Then run the setup for your system:
 Tagalong is free and open source. If it saves you a reach under your mouse every day, a coffee keeps it
 maintained and the next tool coming.
 
-<a href="https://buymeacoffee.com/jenkasia"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="44"></a>
+<a href="https://buymeacoffee.com/jenkasia"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="60"></a>
 
 A ⭐ on the repo or a report of a device that works for you helps too.
 
