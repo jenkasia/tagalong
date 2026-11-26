@@ -6,6 +6,8 @@ Logitech's Easy-Switch keys move only the keyboard: the mouse stays behind, and 
 and press its own button. This tool fixes that with a small background script on each computer. It needs
 no extra hardware, no cloud and no Logi Options+ Flow.
 
+![How it works: you press F2, computer A hears it, sends the mouse and then the keyboard to channel 2, and both reach computer B](docs/how-it-works.svg)
+
 ## How it works
 
 - Every computer the devices are paired with runs the script, set to that computer's Easy-Switch channel.
@@ -169,3 +171,7 @@ This stops the switch and removes it from login. Then you can delete the folder.
 On the keyboards tested, the Easy-Switch keys can't be handed to software, and pressing one tells the computer
 nothing before the keyboard leaves. So no program can see it in time to send the mouse along. Using the
 F-key layer gets around that. `dev/guided_test.py` shows this for your own keyboard.
+
+## License
+
+[MIT](LICENSE). Not affiliated with or endorsed by Logitech.
