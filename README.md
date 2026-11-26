@@ -28,6 +28,8 @@ After a Homebrew Python upgrade the path changes and you add it again.
 
 ## Windows
 
+Step by step, with troubleshooting: **[WINDOWS.md](WINDOWS.md)**.
+
 1. Install Python if it isn't there: `winget install Python.Python.3.12` (or python.org).
 2. Get the files: `git clone https://github.com/jenkasia/logitechmouseswitch.git`, or on GitHub
    click **Code > Download ZIP** and unzip it somewhere simple, like `C:\Users\<you>\switch`.
