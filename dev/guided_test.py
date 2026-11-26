@@ -4,6 +4,8 @@ and prints a summary. Changes nothing permanent: key reporting is turned off aga
 
   .venv/bin/python dev/guided_test.py
 """
+from __future__ import annotations
+
 import os
 import sys
 import time
