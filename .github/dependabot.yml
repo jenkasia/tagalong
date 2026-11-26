@@ -2,6 +2,8 @@ version: 2
 updates:
   - package-ecosystem: pip
     directory: /switch
+    # hidapi>=0.14 already allows new versions: only raise the floor when a fix needs it
+    versioning-strategy: increase-if-necessary
     schedule:
       interval: weekly
   - package-ecosystem: github-actions
