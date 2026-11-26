@@ -29,6 +29,52 @@ On many Logitech keyboards the Easy-Switch keys *are* F1–F3, so you keep press
 
 Tested with an MX Keys Mini and an MX Master 3. Other Easy-Switch devices should work: `check.py` tells you.
 
+## About Logitech Easy-Switch
+
+Many Logitech keyboards and mice can be paired with up to **three computers** at once. Each pairing lives
+in a numbered slot called a **channel** (1, 2, 3), and **Easy-Switch** is how you move between them:
+
+- **Keyboards** have three Easy-Switch keys, often on F1–F3, marked with a computer icon and 1, 2, 3.
+  A small light by the key shows the active channel.
+- **Mice** have one Easy-Switch button underneath. Each press moves to the next channel, and three small
+  lights show which one is active.
+
+Each device switches on its own: pressing a keyboard's Easy-Switch key moves only the keyboard. That's the
+gap this tool fills.
+
+### Pair a device on a channel
+
+This is the usual way for MX devices. Check your device's manual if it differs.
+
+- **Keyboard:** hold the Easy-Switch key of the channel you want for about 3 seconds, until its light
+  blinks fast. Then pair it from the computer's Bluetooth settings.
+- **Mouse:** press the Easy-Switch button underneath until the light for the channel you want is on. Hold it
+  for about 3 seconds, until the light blinks fast. Then pair it from the computer's Bluetooth settings.
+
+Pairing a channel again replaces whatever was paired on it before.
+
+### Which devices work
+
+The tool needs devices that connect over Bluetooth and support the HID++ `CHANGE_HOST` feature. That's
+the feature behind Easy-Switch, so in practice it means Logitech devices with Easy-Switch.
+
+| Status | Devices |
+|---|---|
+| Tested | MX Keys Mini (Mac version), MX Master 3 |
+| Likely to work, untested | Other MX keyboards and mice (MX Keys, MX Keys S, MX Mechanical, MX Master 3S, MX Anywhere 3), and other Easy-Switch devices such as the K380, K780 and Pebble series |
+| Not yet | Any device connected through a Bolt or Unifying USB receiver |
+
+To find out for sure, connect the device and run `check.py`. It says "can switch" for each device that works.
+If you try one, an issue or pull request adding it to this table is welcome.
+
+### Logi Options+
+
+You don't need Logi Options+, and it can stay installed. Two things to watch:
+
+- If Options+ gives the F1–F3 keys a custom action, the script may not get them. Set them back to the default.
+- Options+ **Flow** does something similar (the mouse moves between computers at the screen edge), but it
+  needs Options+ on every computer and all of them on the same network. This tool works without either.
+
 ## Setup
 
 Do this on **every** computer the devices are paired with.
@@ -37,6 +83,7 @@ Do this on **every** computer the devices are paired with.
 
 Pair the keyboard and the mouse with the computer over Bluetooth, on a free Easy-Switch channel. Use the
 same channel number on both devices. That number is this computer's channel.
+See [Pair a device on a channel](#pair-a-device-on-a-channel) if you haven't done this before.
 
 ### 2. Get the files
 
@@ -171,6 +218,34 @@ This stops the switch and removes it from login. Then you can delete the folder.
 On the keyboards tested, the Easy-Switch keys can't be handed to software, and pressing one tells the computer
 nothing before the keyboard leaves. So no program can see it in time to send the mouse along. Using the
 F-key layer gets around that. `dev/guided_test.py` shows this for your own keyboard.
+
+## Technical details
+
+Logitech devices speak **HID++ 2.0**, a vendor protocol carried inside ordinary HID reports. Over Bluetooth
+LE it uses a vendor HID collection (usage page `0xFF43`, usage `0x0202`) with 20-byte "long" reports
+(report ID `0x11`, device index `0xFF`). Each request names a feature by its index, a function number and a
+software ID. The device looks up the index for a feature ID through the root feature.
+
+| Feature | ID | Used for |
+|---|---|---|
+| Root | `0x0000` | Finding the index of each feature below |
+| Device name | `0x0005` | The device's name (in `check.py`) |
+| Change host | `0x1814` | Function 0 reads the channel count and current channel. Function 1 sends the device to another channel: this is the switch. |
+| Reprogrammable controls v4 | `0x1B04` | Reading the Easy-Switch keys' flags (in `check.py --verbose` and `dev/`) |
+| Fn inversion | `0x40A3` | Warning when the top row isn't sending F-keys |
+
+How each system gets the key press:
+
+- **macOS:** the script reads the keyboard's own input reports (report ID `0x01`) through hidapi, opening the
+  device in shared mode so macOS keeps using it too. That's why it needs Input Monitoring.
+- **Windows:** Windows doesn't hand keyboard reports to other programs, so the script registers global hotkeys
+  (`RegisterHotKey`) for the other channels' F-keys.
+
+When the device receives `CHANGE_HOST` it disconnects right away without replying, so the script sends the
+mouse first, then the keyboard.
+
+[Solaar](https://github.com/pwr-Solaar/Solaar), a Linux manager for Logitech devices, is a good reference for
+HID++.
 
 ## License
 
