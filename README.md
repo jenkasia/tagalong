@@ -8,16 +8,16 @@
 <p align="center"><b>Your mouse tags along when your Logitech keyboard switches computers.</b></p>
 
 <p align="center">
-  <a href="https://github.com/jenkasia/logitechmouseswitch/actions/workflows/ci.yml"><img src="https://github.com/jenkasia/logitechmouseswitch/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/jenkasia/logitechmouseswitch/actions/workflows/codeql.yml"><img src="https://github.com/jenkasia/logitechmouseswitch/actions/workflows/codeql.yml/badge.svg?branch=main" alt="CodeQL security scan"></a>
+  <a href="https://github.com/jenkasia/tagalong/actions/workflows/ci.yml"><img src="https://github.com/jenkasia/tagalong/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
+  <a href="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml"><img src="https://github.com/jenkasia/tagalong/actions/workflows/codeql.yml/badge.svg?branch=main" alt="CodeQL security scan"></a>
   <a href=".github/dependabot.yml"><img src="https://img.shields.io/badge/dependabot-enabled-025E8C?logo=dependabot&logoColor=white" alt="Dependabot enabled"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/jenkasia/logitechmouseswitch" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/jenkasia/tagalong" alt="License: MIT"></a>
   <br>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-555" alt="Platforms: macOS, Windows, Linux">
   <a href="switch/requirements.txt"><img src="https://img.shields.io/badge/dependencies-1%20%28hidapi%29-brightgreen" alt="Dependencies: 1 (hidapi)"></a>
-  <a href="https://github.com/jenkasia/logitechmouseswitch/commits/main"><img src="https://img.shields.io/github/last-commit/jenkasia/logitechmouseswitch" alt="Last commit"></a>
-  <a href="https://github.com/jenkasia/logitechmouseswitch/stargazers"><img src="https://img.shields.io/github/stars/jenkasia/logitechmouseswitch?style=flat" alt="GitHub stars"></a>
+  <a href="https://github.com/jenkasia/tagalong/commits/main"><img src="https://img.shields.io/github/last-commit/jenkasia/tagalong" alt="Last commit"></a>
+  <a href="https://github.com/jenkasia/tagalong/stargazers"><img src="https://img.shields.io/github/stars/jenkasia/tagalong?style=flat" alt="GitHub stars"></a>
 </p>
 
 ![Demo: press F2 and the mouse, then the keyboard, move from computer A to computer B](docs/demo.svg)
@@ -49,7 +49,7 @@ Do this on **every** computer:
 ![Setup: pair, download, F-keys on, run setup](docs/setup-steps.svg)
 
 ```bash
-git clone https://github.com/jenkasia/logitechmouseswitch.git
+git clone https://github.com/jenkasia/tagalong.git
 ```
 
 Or **Code → Download ZIP**. Then run the setup for your system:
